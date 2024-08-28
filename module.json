@@ -1,0 +1,65 @@
+{
+    "id": "ez-chat-secret",
+    "title": "EZ Chat Secret",
+    "description": "Show everything but dice rolls from blind and secret rolls.",
+  "authors": [
+    {
+      "name": "kyle pulver",
+      "url": "https://github.com/kylepulver/ez-chat-secret"
+    }
+  ],
+  "url": "https://github.com/kylepulver/ez-chat-secret",
+  "version": "1",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12.331",
+    "maximum": "12"
+  },
+  "esmodules": [
+    "chatsecret.js"
+  ],
+  "scripts": [
+  ],
+  "styles": [
+    "chatsecret.css"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "en.json"
+    }
+  ],
+  "packs": [],
+  "relationships": {
+    "systems": [
+    ],
+    "requires": [
+    ],
+    "optional": [],
+    "flags": {
+      "optional": []
+    }
+  },
+  "flags": {
+    "hotReload": {
+      "extensions": [
+        "css",
+        "html",
+        "hbs",
+        "json"
+      ],
+      "paths": [
+        "styles",
+        "languages"
+      ]
+    }
+  },
+  "socket": false,
+  "manifest": "https://raw.githubusercontent.com/kylepulver/ez-chat-secret/main/module.json",
+  "download": "https://github.com/kylepulver/ez-chat-secret/archive/refs/heads/main.zip",
+  "readme": "https://github.com/kylepulver/ez-chat-secret",
+  "protected": false,
+  "coreTranslation": false,
+  "library": false
+}
