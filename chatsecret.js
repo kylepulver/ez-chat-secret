@@ -1,9 +1,5 @@
 console.log("EZ Chat Secret | Loaded");
 
-// const getMessage = (html) => {
-//     return game.messages.get($(html).data("messageId"))
-// }
-
 Hooks.on("renderChatMessage", async (message, html, data) => {
     if (!message.blind)
         return;
@@ -20,9 +16,6 @@ Hooks.on("renderChatMessage", async (message, html, data) => {
         return html;
       }
 
-
-
-    console.log(message);
     const source = message._source;
     const flavor = source.flavor.split(`data-visibility="gm"`).join("");
 
@@ -40,6 +33,4 @@ Hooks.on("renderChatMessage", async (message, html, data) => {
     html.find(`.flavor-text`).html(flavor);
     html.find(`.action`).prepend(`<span class="ez-chat-secret-text">Secret</span> `);
     html.find('.message-sender').html(message.alias)
-
-
 })
