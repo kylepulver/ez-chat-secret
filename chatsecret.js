@@ -22,9 +22,12 @@ Hooks.on("renderChatMessage", async (message, html, data) => {
     let content = await renderRolls(message.rolls)
     content = $(content);
 
-    content.find('.dice-total').html(`<span class="ez-chat-secret-text">??</span>`)
-    content.find('.part-total').html(`<span class="ez-chat-secret-text">?</span>`)
-    content.find('.roll.die.d20').html(`<span class="ez-chat-secret-text">?</span>`)
+    
+    if (!game.user.isGM) {
+        content.find('.dice-total').html(`<span class="ez-chat-secret-text">??</span>`)
+        content.find('.part-total').html(`<span class="ez-chat-secret-text">?</span>`)
+        content.find('.roll.die.d20').html(`<span class="ez-chat-secret-text">?</span>`)
+    }
 
     content.find('.roll.die.d20.min').removeClass("min")
     content.find('.roll.die.d20.max').removeClass("max")
