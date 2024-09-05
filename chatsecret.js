@@ -62,8 +62,6 @@ Hooks.on("renderChatMessage", async (message, html, data) => {
         html.find('.rk .success').replaceWith(`<span class="ez-chat-secret-text">??</span>`)
     }
 
-    console.log(message);
-
     html.find(`.action`).prepend(`<span class="ez-chat-secret-text">Secret</span> `);
     html.find('.message-sender').html(message.alias)
 
