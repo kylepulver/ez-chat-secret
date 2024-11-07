@@ -6,11 +6,23 @@ Hooks.on("renderChatMessage", async (message, html, data) => {
 
     // Completely hide private rolls
     if ((message.whisper || []).length == 1 && !message.blind) {
-        if (message.isAuthor|| message.whisper.includes(game.user.id)) {
+        if (message.isAuthor || message.whisper.includes(game.user.id)) {
             html.find(`.action`).prepend(`<span class="ez-chat-secret-text">Whisper</span> `);
-            html.find('.dice-total').html(`<span class="ez-chat-secret-text">${html.find('.dice-total').text()}</span>`)
-            html.find('.part-total').html(`<span class="ez-chat-secret-text">${html.find('.part-total').text()}</span>`)
-            html.find('.roll.die.d20').html(`<span class="ez-chat-secret-text">${html.find('.roll.die.d20').text()}</span>`)
+
+            html.find('.dice-total').each(function(index, element) {
+                const dicetotal = $(this).text();
+                $(this).html(`<span class="ez-chat-secret-text">${dicetotal}</span>`)
+            })
+            html.find('.part-total').each(function(index, element) {
+                const parttotal = $(this).text();
+                $(this).html(`<span class="ez-chat-secret-text">${parttotal}</span>`)
+            })
+            html.find('.roll.die.d20').each(function(index, element) {
+                const dieroll = $(this).text();
+                $(this).html(`<span class="ez-chat-secret-text">${dieroll}</span>`)
+            })
+
+          
             return;
         }
         else {
@@ -41,6 +53,8 @@ Hooks.on("renderChatMessage", async (message, html, data) => {
 
     let content = await renderRolls(message.rolls)
     content = $(content);
+
+    // need to check for each dice-total because of rerolls
     
     if (!game.user.isGM) {
         content.find('.dice-total').html(`<span class="ez-chat-secret-text">??</span>`)
@@ -50,15 +64,23 @@ Hooks.on("renderChatMessage", async (message, html, data) => {
         content.find('.roll.die.d20.max').removeClass("max")
     }
     else {
-        content.find('.dice-total').html(`<span class="ez-chat-secret-text">${content.find('.dice-total').text()}</span>`)
-        content.find('.part-total').html(`<span class="ez-chat-secret-text">${content.find('.part-total').text()}</span>`)
-        content.find('.roll.die.d20').html(`<span class="ez-chat-secret-text">${content.find('.roll.die.d20').text()}</span>`)
+        content.find('.dice-total').each(function(index, element) {
+            const dicetotal = $(this).text();
+            $(this).html(`<span class="ez-chat-secret-text">${dicetotal}</span>`)
+        })
+        content.find('.part-total').each(function(index, element) {
+            const parttotal = $(this).text();
+            $(this).html(`<span class="ez-chat-secret-text">${parttotal}</span>`)
+        })
+        content.find('.roll.die.d20').each(function(index, element) {
+            const dieroll = $(this).text();
+            $(this).html(`<span class="ez-chat-secret-text">${dieroll}</span>`)
+        })
     }
 
     html.find(`.message-content`).html(content);
     html.find(`.message-content`).prepend(`<div class="flavor-text">${source.flavor}</div>`);
     if (!game.user.isGM) {
-        // html.find('.rk').replaceWith(`<span class="ez-chat-secret-text">Recall Knowledge</span>`)
         html.find('.rk .success').replaceWith(`<span class="ez-chat-secret-text">??</span>`)
     }
 
