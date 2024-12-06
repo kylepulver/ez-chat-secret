@@ -82,6 +82,7 @@ Hooks.on("renderChatMessage", async (message, html, data) => {
     html.find(`.message-content`).prepend(`<div class="flavor-text">${source.flavor}</div>`);
     if (!game.user.isGM) {
         html.find('.rk .success').replaceWith(`<span class="ez-chat-secret-text">??</span>`)
+        html.find('.rk-skills').hide();
     }
 
     html.find(`.action`).prepend(`<span class="ez-chat-secret-text">Secret</span> `);
